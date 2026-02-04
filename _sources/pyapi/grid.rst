@@ -14,6 +14,7 @@ Submodules
    grid.cubic
    grid.hirshfeld
    grid.molgrid
+   grid.ngrid
    grid.ode
    grid.onedgrid
    grid.periodicgrid
@@ -26,5 +27,5 @@ Module contents
 
 .. automodule:: grid
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

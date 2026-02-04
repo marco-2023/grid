@@ -1,27 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Multipole Moments &mdash; grid  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/override.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=064c4a14" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -147,10 +145,22 @@
 <li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Electron-Density">Example: Electron Density</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Local-Properties">Local Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Interpolation">Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Derivative-Interpolation">Derivative Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Solving-Poisson-Equation">Solving Poisson Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Local-Properties">Local Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Atomic-charges-from-molecular-electron-density">Example: Atomic charges from molecular electron density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Interpolation">Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#id1">Example: Electron Density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Derivative-Interpolation">Derivative Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Weizsacker-Kinetic-Energy-Density">Example: Weizsacker Kinetic Energy Density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Solving-Poisson-Equation">Solving Poisson Equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Electrostatic-Potential">Example: Electrostatic Potential</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cubic_grid.html">Cubic Grids</a><ul>
@@ -200,6 +210,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.cubic.html">grid.cubic module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.hirshfeld.html">grid.hirshfeld module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.molgrid.html">grid.molgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.ngrid.html">grid.ngrid module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.ode.html">grid.ode module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.onedgrid.html">grid.onedgrid module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.periodicgrid.html">grid.periodicgrid module</a></li>
@@ -208,7 +219,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.utils.html">grid.utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#module-grid">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -240,8 +251,8 @@
            <div itemprop="articleBody">
              
   <p><a class="reference external" href="https://colab.research.google.com/github/theochem/grid/blob/master/examples/Multipole_Moments.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="section" id="Multipole-Moments">
-<h1>Multipole Moments<a class="headerlink" href="#Multipole-Moments" title="Permalink to this heading"></a></h1>
+<section id="Multipole-Moments">
+<h1>Multipole Moments<a class="headerlink" href="#Multipole-Moments" title="Link to this heading"></a></h1>
 <p>Every grid class has the ability to compute the multipole moment integral of a function over various centers. It can compute the following types:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -256,6 +267,21 @@
 \[\vec{\mu} = \sum_{i=1}^{N_{atoms}} Z_i (\vec{R_i} - \vec{R_c}) -
 \int (\vec{r} - \vec{R_c}) \rho(\vec{r}) dr,\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_{atoms}\)</span> is the number of atoms, <span class="math notranslate nohighlight">\(Z_i\)</span> is the atomic charge of the ith atom, <span class="math notranslate nohighlight">\(\vec{R_i}\)</span> is the ith coordinate of the atom, <span class="math notranslate nohighlight">\(\vec{R_c}\)</span> is the center of the molecule and <span class="math notranslate nohighlight">\(\rho\)</span> is the electron density of the molecule.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Install packages in Google Colab</span>
+<span class="c1"># ! pip install qc-iodata</span>
+<span class="c1"># ! pip install qc-grid</span>
+<span class="c1"># ! pip install qc-gbasis</span>
+
+<span class="c1"># # Download the example files</span>
+<span class="c1"># from urllib.request import urlretrieve</span>
+<span class="c1"># urlretrieve(&quot;https://raw.githubusercontent.com/theochem/grid/refs/heads/master/examples/ch2o_q%2B0.fchk&quot;,&quot;ch2o_q+0.fchk&quot;)</span>
+</pre></div>
+</div>
+</div>
 <p>IOData is used to first read the wavefunction information of Formaldehyde.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -340,7 +366,7 @@ Dipole moment true [-9.39793529e-01  2.44832724e-08 -2.02253053e-07]
 Mean error 4.877715321240814e-05 with maximum error 6.42069436543974e-05
 </pre></div></div>
 </div>
-</div>
+</section>
 
 
            </div>

@@ -1,27 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Constructing Molecular Grids &mdash; grid  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/override.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=064c4a14" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -147,10 +145,22 @@
 <li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Electron-Density">Example: Electron Density</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Local-Properties">Local Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Interpolation">Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Derivative-Interpolation">Derivative Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Solving-Poisson-Equation">Solving Poisson Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Local-Properties">Local Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Atomic-charges-from-molecular-electron-density">Example: Atomic charges from molecular electron density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Interpolation">Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#id1">Example: Electron Density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Derivative-Interpolation">Derivative Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Weizsacker-Kinetic-Energy-Density">Example: Weizsacker Kinetic Energy Density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Solving-Poisson-Equation">Solving Poisson Equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Electrostatic-Potential">Example: Electrostatic Potential</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cubic_grid.html">Cubic Grids</a><ul>
@@ -200,6 +210,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.cubic.html">grid.cubic module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.hirshfeld.html">grid.hirshfeld module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.molgrid.html">grid.molgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.ngrid.html">grid.ngrid module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.ode.html">grid.ode module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.onedgrid.html">grid.onedgrid module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.periodicgrid.html">grid.periodicgrid module</a></li>
@@ -208,7 +219,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.utils.html">grid.utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#module-grid">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -240,11 +251,11 @@
            <div itemprop="articleBody">
              
   <p><a class="reference external" href="https://colab.research.google.com/github/theochem/grid/blob/master/examples/Molecular_Grid_Construction.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="section" id="Constructing-Molecular-Grids">
-<h1>Constructing Molecular Grids<a class="headerlink" href="#Constructing-Molecular-Grids" title="Permalink to this heading"></a></h1>
+<section id="Constructing-Molecular-Grids">
+<h1>Constructing Molecular Grids<a class="headerlink" href="#Constructing-Molecular-Grids" title="Link to this heading"></a></h1>
 <p>Molecular grids are particularly useful in quantum chemistry for integrating functions that concentrate and are “spike” around finite set of points, usually the atomic nuclei. This is particularly needed for DFT computation or atom-in-molecule analysis.</p>
-<div class="section" id="Molecular-Grid-Details">
-<h2>Molecular Grid Details<a class="headerlink" href="#Molecular-Grid-Details" title="Permalink to this heading"></a></h2>
+<section id="Molecular-Grid-Details">
+<h2>Molecular Grid Details<a class="headerlink" href="#Molecular-Grid-Details" title="Link to this heading"></a></h2>
 <p>It starts by first decomposing a function into atomic contributions and writing out each atomic integral in spherical coordinates. As proposed by Becke, this is done as</p>
 <div class="math notranslate nohighlight">
 \[\int_{\mathbb{R}^3} f(\vec{\textbf{r}}) d\vec{\textbf{r}} = \sum_{A} \int_{\mathbb{R}^3}
@@ -262,6 +273,21 @@ the numerical integral</p>
 w_A(r, \theta, \phi) f(r, \theta, \phi).\]</div>
 <p>For any general function <span class="math notranslate nohighlight">\(f: \mathbb{R}^3\rightarrow \mathbb{R}\)</span>, Grid package offers various grids in <a class="reference internal" href="../pyapi/grid.cubic.html"><span class="doc">Cubic</span></a> class for constructing hyper-rectangular grids. If <span class="math notranslate nohighlight">\(f\)</span> is periodic, then the <a class="reference internal" href="../pyapi/grid.periodicgrid.html"><span class="doc">periodic</span></a> module is useful.</p>
 <p><strong>Example: Formaldehyde</strong> This example computes the integral of the electron density of Formaldehyde obtained from Gaussian calculation. The integral of the electron density should be the sum of the atomic charges (16 for Formaldehyde).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Install packages in Google Colab</span>
+<span class="c1"># ! pip install qc-iodata</span>
+<span class="c1"># ! pip install qc-grid</span>
+<span class="c1"># ! pip install qc-gbasis</span>
+
+<span class="c1"># # Download the example files</span>
+<span class="c1"># from urllib.request import urlretrieve</span>
+<span class="c1"># urlretrieve(&quot;https://raw.githubusercontent.com/theochem/grid/refs/heads/master/examples/ch2o_q%2B0.fchk&quot;,&quot;ch2o_q+0.fchk&quot;)</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -302,15 +328,15 @@ Atomic numbers of the atom
  [8 6 1 1]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Construction-of-Molecular-Grid">
-<h2>Construction of Molecular Grid<a class="headerlink" href="#Construction-of-Molecular-Grid" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Construction-of-Molecular-Grid">
+<h2>Construction of Molecular Grid<a class="headerlink" href="#Construction-of-Molecular-Grid" title="Link to this heading"></a></h2>
 <p>Molecular grid offers various methods to construct MolGrid object. Each method requires the atom in molecule weights <span class="math notranslate nohighlight">\(w_A\)</span> to be provided.</p>
 <ol class="arabic simple">
-<li><p><a class="reference internal" href="../pyapi/grid.molgrid.html#grid.molgrid.MolGrid"><span class="std std-ref">MolGrid.__init__</span></a>: Provide list of atomic grids for each center, and the atomic numbers for each center. This is useful to explicitly place atomic grids at each center.</p></li>
-<li><p><a class="reference internal" href="../pyapi/grid.molgrid.html#grid.molgrid.MolGrid.from_preset"><span class="std std-ref">MolGrid.from_preset()</span></a>: Generates atomic grid for each center based on the atomic numbers, atomic coordinates, a radial grid to integrate over <span class="math notranslate nohighlight">\([0, \infty)\)</span>, and a preset parameter from the list [“coarse”, “medium”, “fine”, “veryfine”, “ultrafine”, “insane”] that controls the degree of the angular grid.</p></li>
-<li><p><a class="reference internal" href="../pyapi/grid.molgrid.html#grid.molgrid.MolGrid.from_size"><span class="std std-ref">MolGrid.from_size()</span></a>: Similar to from_preset method but instead of string preset parameter, it has an integer size which controls the size of the angular grid inside the atomic grid class.</p></li>
-<li><p><a class="reference internal" href="../pyapi/grid.molgrid.html#grid.molgrid.MolGrid.from_pruned"><span class="std std-ref">MolGrid.from_pruned()</span></a>: Gives more control to the size of the angular grid based on the radius. This is done by providing <code class="docutils literal notranslate"><span class="pre">r_sectors</span></code> list and <code class="docutils literal notranslate"><span class="pre">sector_degs</span></code> that controls what kind of angular grid to place at each radius point. This is useful for placing lower degree angular grids close to the nucleus and larger degree angular grids further away.</p></li>
+<li><p>MolGrid.__init__: Provide list of atomic grids for each center, and the atomic numbers for each center. This is useful to explicitly place atomic grids at each center.</p></li>
+<li><p>MolGrid.from_preset(): Generates atomic grid for each center based on the atomic numbers, atomic coordinates, a radial grid to integrate over <span class="math notranslate nohighlight">\([0, \infty)\)</span>, and a preset parameter from the list [“coarse”, “medium”, “fine”, “veryfine”, “ultrafine”, “insane”] that controls the degree of the angular grid.</p></li>
+<li><p>MolGrid.from_size(): Similar to from_preset method but instead of string preset parameter, it has an integer size which controls the size of the angular grid inside the atomic grid class.</p></li>
+<li><p>MolGrid.from_pruned(): Gives more control to the size of the angular grid based on the radius. This is done by providing <code class="docutils literal notranslate"><span class="pre">r_sectors</span></code> list and <code class="docutils literal notranslate"><span class="pre">sector_degs</span></code> that controls what kind of angular grid to place at each radius point. This is useful for placing lower degree angular grids close to the nucleus and larger degree angular grids further away.</p></li>
 </ol>
 <p>See the function documentation for more information. The first step here is to generate an one-dimensional grid to integrate over the radial coordinate <span class="math notranslate nohighlight">\(r \in [0, \infty)\)</span>. This is done by constructing a Trapezoidal grid over <span class="math notranslate nohighlight">\([-1, 1]\)</span> and using the Becke Transformation to transform it to <span class="math notranslate nohighlight">\([0, \infty)\)</span>.</p>
 <div class="nbinput nblast docutils container">
@@ -338,8 +364,8 @@ Atomic numbers of the atom
 </pre></div>
 </div>
 </div>
-<div class="section" id="Constructor">
-<h3>Constructor<a class="headerlink" href="#Constructor" title="Permalink to this heading"></a></h3>
+<section id="Constructor">
+<h3>Constructor<a class="headerlink" href="#Constructor" title="Link to this heading"></a></h3>
 <p>The first method of constructing (point 1 above) is using the initializor. This is done by explicitly constructing an atomic grid over each center. The degree of the angular component of the atomic grid should depend on the charge of the atom. It is recommended that the larger the atom, the larger the degree of the angular component. Similarly for the radial grid, the larger the atom, the larger the radial grid component should be.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -380,9 +406,9 @@ Atomic numbers of the atom
 The integral of electron density of Formaldehyde is 15.999822947424516.
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="from_preset-method">
-<h3>from_preset method<a class="headerlink" href="#from_preset-method" title="Permalink to this heading"></a></h3>
+</section>
+<section id="from_preset-method">
+<h3>from_preset method<a class="headerlink" href="#from_preset-method" title="Link to this heading"></a></h3>
 <p>The disadvantage of the previous method is that it is difficult to choose the size of the angular degrees for each atom, and it can be cumbersome for larger atoms to construct atomic grids for each center. The <code class="docutils literal notranslate"><span class="pre">from_preset</span></code> method has a preset that handles it for the user that is simpler.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -406,9 +432,9 @@ The integral of electron density of Formaldehyde is 15.999822947424516.
 The integral of electron density of Formaldehyde is 15.999839766372306.
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="from_size-method">
-<h3>from_size method<a class="headerlink" href="#from_size-method" title="Permalink to this heading"></a></h3>
+</section>
+<section id="from_size-method">
+<h3>from_size method<a class="headerlink" href="#from_size-method" title="Link to this heading"></a></h3>
 <p>This method is similar to before except you can explicitly set the size of the angular degrees. This is the same across all atoms.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -432,9 +458,9 @@ The integral of electron density of Formaldehyde is 15.999839766372306.
 The integral of electron density of Formaldehyde is 16.000299762134755.
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="from_pruned-method">
-<h3>from_pruned method<a class="headerlink" href="#from_pruned-method" title="Permalink to this heading"></a></h3>
+</section>
+<section id="from_pruned-method">
+<h3>from_pruned method<a class="headerlink" href="#from_pruned-method" title="Link to this heading"></a></h3>
 <p>This method allows explicit control to the angular degree <span class="math notranslate nohighlight">\(L_i\)</span> by breaking up the radial grid <span class="math notranslate nohighlight">\([0, \infty)\)</span> into sectors <span class="math notranslate nohighlight">\([0, R a_1) \cup [R a_1, R a_2) \cup \cdots \cup [R a_Q, \infty)\)</span> where <span class="math notranslate nohighlight">\(R\)</span> is the radius parameter, <span class="math notranslate nohighlight">\(\{a_i\}\)</span> is the <code class="docutils literal notranslate"><span class="pre">r_sectors</span></code> and each segment is associated to a angular degree <span class="math notranslate nohighlight">\(L_i\)</span>, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -485,9 +511,9 @@ The integral of electron density of Formaldehyde is 16.000299762134755.
 The integral of electron density of Formaldehyde is 16.000504626151567.
 </pre></div></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
