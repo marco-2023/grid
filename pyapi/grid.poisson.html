@@ -17,6 +17,8 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -216,7 +218,7 @@
 <li class="toctree-l4"><a class="reference internal" href="grid.utils.html">grid.utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="grid.html#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid.html#module-grid">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -249,8 +251,137 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="grid-poisson-module">
-<h1>grid.poisson module<a class="headerlink" href="#grid-poisson-module" title="Link to this heading"></a></h1>
+  <section id="module-grid.poisson">
+<span id="grid-poisson-module"></span><h1>grid.poisson module<a class="headerlink" href="#module-grid.poisson" title="Link to this heading"></a></h1>
+<p>Poisson solver module.</p>
+<p>This module solves the following Poisson equation:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 V(r) = -4\pi \rho(r),\]</div>
+<p>for some Coulomb potential <span class="math notranslate nohighlight">\(V(r)\)</span> and charge density <span class="math notranslate nohighlight">\(\rho(r)\)</span>
+over a centered atomic grid. It is recommended to use the boundary value problem
+for handing singularities near the origin of the atomic grid.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grid.poisson.interpolate_laplacian">
+<span class="sig-name descname"><span class="pre">interpolate_laplacian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vals</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/theochem/grid/blob/master/src/grid/poisson.py#L383-L497"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grid.poisson.interpolate_laplacian" title="Link to this definition"></a></dt>
+<dd><p>Return a function that interpolates the Laplacian of a function.</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 f = \frac{1}{r}\frac{\partial^2 rf}{\partial r^2} - \frac{\hat{L}}{r^2},\]</div>
+<p>such that the angular momentum operator satisfies <span class="math notranslate nohighlight">\(\hat{L}(Y_l^m) = l (l + 1) Y_l^m\)</span>.
+Expanding f in terms of spherical harmonic expansion, we get that</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 f = \sum_l \sum_m \bigg[ \frac{\partial^2 \rho_{lm}(r)}{\partial r^2}
++ \frac{2}{r} \frac{\partial \rho_{lm}(r)}{\partial r} - \frac{l(l+1)}{r^2}\rho_{lm}(r)
+ \bigg] Y_l^m,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{lm}^f\)</span> is the lth, mth radial component of function f.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molgrid</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="grid.molgrid.html#grid.molgrid.MolGrid" title="grid.molgrid.MolGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">MolGrid</span></code></a> | <a class="reference internal" href="grid.atomgrid.html#grid.atomgrid.AtomGrid" title="grid.atomgrid.AtomGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtomGrid</span></code></a></span>) – Atomic grid that can integrate spherical functions and interpolate radial components.</p></li>
+<li><p><strong>func_vals</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – The function values evaluated on all <span class="math notranslate nohighlight">\(N\)</span> points on the atomic grid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function that interpolates the Laplacian of a function whose input is
+Cartesian points. The float value is the cutoff where radial points
+smaller than the cutoff are replaced with the cutoff. Computing the Laplacian at r=0 can
+cause problems depending on the function provided.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable[ndarray(M,3), float -&gt; ndarray(M,)]</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Since <span class="math notranslate nohighlight">\(\rho_{lm}\)</span> and its derivatives are being interpolated and due to division by
+powers of <span class="math notranslate nohighlight">\(r\)</span>, it is recommended to be very careful of having values near zero.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grid.poisson.solve_poisson_bvp">
+<span class="sig-name descname"><span class="pre">solve_poisson_bvp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_large_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ode_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/theochem/grid/blob/master/src/grid/poisson.py#L317-L380"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grid.poisson.solve_poisson_bvp" title="Link to this definition"></a></dt>
+<dd><p>Return interpolation of the solution to the Poisson equation solved as a boundary value problem.</p>
+<p>The Poisson equation solves for function <span class="math notranslate nohighlight">\(g\)</span> of the following:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 g = (-4\pi) f,\]</div>
+<p>for a fixed function <span class="math notranslate nohighlight">\(f\)</span>, where <span class="math notranslate nohighlight">\(\nabla^2\)</span> is the Laplacian.  This
+is transformed to an set of ODE problems as a boundary value problem. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>If boundary is not provided, then the boundary of <span class="math notranslate nohighlight">\(g\)</span> for large r is set to
+<span class="math notranslate nohighlight">\(\int \int \int f(r, \theta, \phi) / r\)</span>.  The solution <span class="math notranslate nohighlight">\(g\)</span> is assumed to be
+zero at the origin <span class="math notranslate nohighlight">\(g(0, \theta, \phi) = 0\)</span>.  Use <cite>solve_poisson_ivp</cite> if this assumption
+isn’t needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molgrid</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="grid.molgrid.html#grid.molgrid.MolGrid" title="grid.molgrid.MolGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">MolGrid</span></code></a> | <a class="reference internal" href="grid.atomgrid.html#grid.atomgrid.AtomGrid" title="grid.atomgrid.AtomGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtomGrid</span></code></a></span>) – Molecular or atomic grid that is used for integration and expanding func into real spherical
+harmonic basis.</p></li>
+<li><p><strong>func_vals</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – The function values evaluated on all <span class="math notranslate nohighlight">\(N\)</span> points on the molecular grid.</p></li>
+<li><p><strong>transform</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="grid.rtransform.html#grid.rtransform.BaseTransform" title="grid.rtransform.BaseTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTransform</span></code></a></span>) – Transformation from infinite domain <span class="math notranslate nohighlight">\(r \in [0, \infty)\)</span> to another
+domain that is a finite.</p></li>
+<li><p><strong>boundary</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The boundary value of <span class="math notranslate nohighlight">\(g\)</span> in the limit of r to infinity.</p></li>
+<li><p><strong>include_origin</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If true, will add r=0 point when solving for the ode only. If false, it is recommended
+to have many radial points near the origin.</p></li>
+<li><p><strong>remove_large_pts</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – If true, will remove any points larger than <cite>remove_large_pts</cite> when solving for the ode
+only.</p></li>
+<li><p><strong>ode_params</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The parameters for the ode solver. See <cite>grid.ode.solve_ode_bvp</cite> for all options.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The solution to Poisson equaiton/potential <span class="math notranslate nohighlight">\(g : \mathbb{R}^3 \rightarrow \mathbb{R}\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable(ndarray(N, 3) -&gt; float)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Becke, A. D., &amp; Dickson, R. M. (1988). Numerical solution of Poisson`s equation in
+polyatomic molecules. The Journal of chemical physics, 89(5), 2993-2997.</p>
+</aside>
+</aside>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grid.poisson.solve_poisson_ivp">
+<span class="sig-name descname"><span class="pre">solve_poisson_ivp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1000,</span> <span class="pre">1e-05)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ode_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/theochem/grid/blob/master/src/grid/poisson.py#L167-L220"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grid.poisson.solve_poisson_ivp" title="Link to this definition"></a></dt>
+<dd><p>Return interpolation of the solution to the Poisson equation solved as an initial value problem.</p>
+<p>The Poisson equation solves for function <span class="math notranslate nohighlight">\(g\)</span> of the following:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 g = (-4\pi) f,\]</div>
+<p>for a fixed function <span class="math notranslate nohighlight">\(f\)</span>, where <span class="math notranslate nohighlight">\(\nabla^2\)</span> is the Laplacian.  This
+is transformed to a set of ODE problems as an initial value problem.</p>
+<p>Ihe initial value problem is chosen so that the boundary of <span class="math notranslate nohighlight">\(g\)</span> for large r is set to
+<span class="math notranslate nohighlight">\(\int \int \int f(r, \theta, \phi) / r\)</span>.  Depending on <span class="math notranslate nohighlight">\(f\)</span>, this function has
+difficulty in capturing the origin <span class="math notranslate nohighlight">\(r=0\)</span> region, and is recommended to keep the
+final interval <span class="math notranslate nohighlight">\(a\)</span> close to zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molgrid</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="grid.molgrid.html#grid.molgrid.MolGrid" title="grid.molgrid.MolGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">MolGrid</span></code></a> | <a class="reference internal" href="grid.atomgrid.html#grid.atomgrid.AtomGrid" title="grid.atomgrid.AtomGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtomGrid</span></code></a></span>) – Molecular or atomic grid that is used for integration and expanding func into real
+spherical harmonic basis.</p></li>
+<li><p><strong>func_vals</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – The function values evaluated on all <span class="math notranslate nohighlight">\(N\)</span> points on the molecular grid.</p></li>
+<li><p><strong>transform</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="grid.rtransform.html#grid.rtransform.BaseTransform" title="grid.rtransform.BaseTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTransform</span></code></a></span>) – Transformation from infinite domain <span class="math notranslate nohighlight">\(r \in [0, \infty)\)</span> to another
+domain that is a finite.</p></li>
+<li><p><strong>r_interval</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></span>) – The interval <span class="math notranslate nohighlight">\((b, a)\)</span> of <span class="math notranslate nohighlight">\(r\)</span> for which the ODE solver will start from and end,
+where <span class="math notranslate nohighlight">\(b&gt;a\)</span>. The value <span class="math notranslate nohighlight">\(b\)</span> should be large as it determines the asymptotic
+region of <span class="math notranslate nohighlight">\(g\)</span> and value <span class="math notranslate nohighlight">\(a\)</span> is recommended to be small but not zero depending
+on <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+<li><p><strong>ode_params</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The parameters for the ode solver. See <cite>grid.ode.solve_ode_ivp</cite> for all options.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The solution to Poisson equaiton/potential <span class="math notranslate nohighlight">\(g : \mathbb{R}^3 \rightarrow \mathbb{R}\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable(ndarray(N, 3) -&gt; float)</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
