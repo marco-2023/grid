@@ -20,6 +20,8 @@ Submodules
    grid.onedgrid
    grid.periodicgrid
    grid.poisson
+   grid.protransform
+   grid.robust_poisson
    grid.rtransform
    grid.utils
 
